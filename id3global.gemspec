@@ -8,9 +8,13 @@ Gem::Specification.new do |gem|
   gem.version       = Id3global::VERSION
   gem.authors       = ["Chris Norman"]
   gem.email         = ["chris@norman.me"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{ID3GLOBAL}
+  gem.summary       = %q{ID3GLOBAL}
   gem.homepage      = ""
+  
+  gem.add_development_dependency "rspec", "~> 2.6"
+  gem.add_dependency "savon"
+  gem.add_dependency "activesupport"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
