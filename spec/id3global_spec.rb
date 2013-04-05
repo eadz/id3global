@@ -7,6 +7,11 @@ describe Id3global::ProfileList do
     
     profiles = Id3global::ProfileList.get_profile_list()
 
+    profiles.each do |profile|
+      puts profile.id
+      puts profile.version
+    end
+
     profiles.length.should_not == 0
 
   end
@@ -95,12 +100,21 @@ end
 
 
 def configure_id3_for_test(log_level = :warn)
+  # Id3global.configure do |config|
+  #   config.account_name = 'Integration@vamagaming.com'
+  #   config.password = 'fHD=2]zes/{GPEB4b/q7ehm8Deiv9m'
+  #   config.profile_id = '1de3b997-9d17-4d9c-bb3d-130e652ccec3'
+  #   config.profile_version = 2
+  #   config.test_mode = true
+  #   config.savon_log_level = log_level
+  # end
+  # 
   Id3global.configure do |config|
     config.account_name = 'Integration@vamagaming.com'
-    config.password = 'fHD=2]zes/{GPEB4b/q7ehm8Deiv9m'
-    config.profile_id = '1de3b997-9d17-4d9c-bb3d-130e652ccec3'
+    config.password = 'B8(N62oQUpi9FejM]Kr&{7,iLQvhzq'
+    config.profile_id = 'd1ad78da-bba1-41ad-bc21-bccadfc79419'
     config.profile_version = 2
-    config.test_mode = true
-    config.savon_log_level = log_level
+    config.test_mode = false
+    config.savon_log_level = :warn
   end
 end

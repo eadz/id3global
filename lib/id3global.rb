@@ -37,7 +37,7 @@ module Id3global
   end
 
   TEST_BASE_URL = "https://pilot.id3global.com/"
-  LIVE_BASE_URL = "https://www.prove-uru.co.uk:8443/"
+  LIVE_BASE_URL = "https://www.id3global.com/"
   
   PROVE_SERVICE_ROOT = "GlobalWS"
 
