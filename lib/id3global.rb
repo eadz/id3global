@@ -1,6 +1,8 @@
 require "id3global/version"
 
 require 'savon'
+require 'rubyntlm'
+require 'fix_ssl'
 
 module Id3global
   autoload :AuthenticateSp,         'id3global/authenticate_sp'
@@ -51,9 +53,8 @@ module Id3global
   end
   
   def self.create_client
-    
-    client = Savon.client(log_level: Id3global.configuration.savon_log_level) do
-      wsdl self.get_service_wsdl
+    client = Savon.client(log_level: Id3global.configuration.savon_log_level,
+                          wsdl: self.get_service_wsdl) do
       HTTPI.log = Id3global.configuration.savon_log_level == :debug
     end
 
