@@ -13,7 +13,6 @@ describe Id3global::ProfileList do
     end
 
     profiles.length.should_not == 0
-
   end
 end
 
@@ -24,25 +23,23 @@ describe Id3global::AuthenticateSp do
 
     personal_data = Id3global::PersonalData.new()
     personal_data.title = "Mr"
-    personal_data.forename = "Christopher"
-    personal_data.surname = "Norman"
-    personal_data.dob = Date.new(1977,9,1)
-    personal_data.email = "chris@norman.me"
+    personal_data.forename = "Michael"
+    personal_data.surname = "Black"
+    personal_data.dob = Date.new(1985,4,26)
 
     uk_data = Id3global::Addresses.new()
     uk_data.current_address = Id3global::Address.new()
 
     uk_data.current_address.fixed_format = Id3global::FixedAddress.new()
-    uk_data.current_address.fixed_format.premise = "7"
-    uk_data.current_address.fixed_format.sub_street = "Park Mews"
-    uk_data.current_address.fixed_format.street = "Park Road"
-    uk_data.current_address.fixed_format.city = "London"
-    uk_data.current_address.fixed_format.postcode = "N8 8GB"
+    uk_data.current_address.fixed_format.premise = "44"
+    # uk_data.current_address.fixed_format.sub_street = ""
+    uk_data.current_address.fixed_format.street = "Cherry Tree Road"
+    uk_data.current_address.fixed_format.city = "Wirral"
+    uk_data.current_address.fixed_format.postcode = "CH4 69RF"
 
     result = Id3global::AuthenticateSp.process(personal_data, uk_data)
 
-    result.band_text.should == "3. PASS - Full KYC"
-
+    result.band_text.should == "PASS"
   end
   
   it "should authenticate with fixed format address" do
@@ -50,24 +47,23 @@ describe Id3global::AuthenticateSp do
   
     personal_data = Id3global::PersonalData.new()
     personal_data.title = "Mr"
-    personal_data.forename = "Christopher"
-    personal_data.surname = "Norman"
-    personal_data.dob = Date.new(1977,9,1)
-    personal_data.email = "chris@norman.me"
+    personal_data.forename = "Michael"
+    personal_data.surname = "Black"
+    personal_data.dob = Date.new(1985,4,26)
 
     uk_data = Id3global::Addresses.new()
     uk_data.current_address = Id3global::Address.new()
   
     uk_data.current_address.fixed_format = Id3global::FixedAddress.new()
-    uk_data.current_address.fixed_format.building = "7"
-    # uk_data.current_address.fixed_format.sub_street = "Park Mews"
-    uk_data.current_address.fixed_format.street = "Park Mews, Park Road"
-    uk_data.current_address.fixed_format.city = "London"
-    uk_data.current_address.fixed_format.postcode = "N8 8GB"
+    uk_data.current_address.fixed_format.premise = "44"
+    # uk_data.current_address.fixed_format.sub_street = ""
+    uk_data.current_address.fixed_format.street = "Cherry Tree Road"
+    uk_data.current_address.fixed_format.city = "Wirral"
+    uk_data.current_address.fixed_format.postcode = "CH4 69RF"
 
     result = Id3global::AuthenticateSp.process(personal_data, uk_data)
   
-    result.band_text.should == "3. PASS - Full KYC"
+    result.band_text.should == "PASS"
   
   end
 
@@ -110,11 +106,11 @@ def configure_id3_for_test(log_level = :warn)
   # end
   # 
   Id3global.configure do |config|
-    config.account_name = 'Integration@vamagaming.com'
-    config.password = 'B8(N62oQUpi9FejM]Kr&{7,iLQvhzq'
-    config.profile_id = 'd1ad78da-bba1-41ad-bc21-bccadfc79419'
-    config.profile_version = 2
-    config.test_mode = false
+    config.account_name = ENV['ID3GLOBAL_ACCOUNT_NAME']
+    config.password = ENV['ID3GLOBAL_PASSWORD']
+    config.profile_id = ENV['ID3GLOBAL_PROFILE_ID']
+    config.profile_version = 0
+    config.test_mode = true
     config.savon_log_level = :warn
   end
 end
