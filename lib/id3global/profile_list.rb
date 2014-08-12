@@ -8,22 +8,16 @@ class Id3global::ProfileList
         message Id3global.merge_password_hash({})
       end
 
-      list = Array.new
-
       response = response.to_hash
       profile_response = response[:get_profiles_response][:get_profiles_result][:global_profile]
 
       if profile_response.is_a? Hash
-        list << ::Id3global::Profile.new(profile_response)
+        Array.wrap(::Id3global::Profile.new(profile_response))
       else
-        profile_response.each do |profile|
-          list << ::Id3global::Profile.new(profile)
+        profile_response.map do |profile|
+          ::Id3global::Profile.new(profile)
         end
       end
-
-      list
     end
   end
-
-
 end

@@ -13,7 +13,6 @@ module Id3global
   autoload :Addresses,              'id3global/addresses'
   autoload :PersonalData,           'id3global/personal_data'
 
-
   class << self
     attr_accessor :configuration
   end
@@ -55,8 +54,6 @@ module Id3global
                           wsdl: self.get_service_wsdl) do
       HTTPI.log = Id3global.configuration.savon_log_level == :debug
     end
-
-
   end
 
   def self.merge_password_hash(options = {})
@@ -67,7 +64,6 @@ module Id3global
       "Password" => Id3global.configuration.password
     }
 
-    options.merge!(password_hash)
+    options.merge(password_hash)
   end
-
 end
