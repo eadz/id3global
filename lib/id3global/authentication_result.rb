@@ -9,7 +9,7 @@ class Id3global::AuthenticationResult
   ATTRIBUTES.each do |attr|
     attr_accessor attr
   end
-   
+
   def initialize(args = nil)
     ATTRIBUTES.each do |a|
       if (args.key?(a))
@@ -24,5 +24,5 @@ class Id3global::AuthenticationResult
       h
     end
   end
-  
+
 end

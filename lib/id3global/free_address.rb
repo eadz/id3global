@@ -1,6 +1,6 @@
 class Id3global::FreeAddress
   attr_accessor :line_1, :line_2, :line_3, :line_4, :line_5, :line_6, :line_7, :line_8, :postcode, :country
-  
+
   def to_prove_hash
     {
       "AddressLine1" => self.line_1,
@@ -14,9 +14,5 @@ class Id3global::FreeAddress
       "Country" => self.country.nil? ? "United Kingdom" : self.country
     }
   end
-  
+
 end
-
-
-
-

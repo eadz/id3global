@@ -6,8 +6,8 @@ require 'id3global/version'
 Gem::Specification.new do |gem|
   gem.name          = "id3global"
   gem.version       = Id3global::VERSION
-  gem.authors       = ["Chris Norman"]
-  gem.email         = ["chris@norman.me"]
+  gem.authors       = ["Chris Norman", "Eaden McKee"]
+  gem.email         = ["chris@norman.me", "eaden@coinjar.com"]
   gem.description   = %q{ID3GLOBAL}
   gem.summary       = %q{ID3GLOBAL}
   gem.homepage      = ""
