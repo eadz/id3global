@@ -1,8 +1,6 @@
 require "id3global/version"
 
 require 'savon'
-require 'rubyntlm'
-require 'fix_ssl'
 
 module Id3global
   autoload :AuthenticateSp,         'id3global/authenticate_sp'
@@ -40,18 +38,18 @@ module Id3global
 
   TEST_BASE_URL = "https://pilot.id3global.com/"
   LIVE_BASE_URL = "https://www.id3global.com/"
-  
+
   PROVE_SERVICE_ROOT = "GlobalWS"
 
   def self.setup
     yield self
   end
-  
+
   def self.get_service_wsdl
     root = Id3global.configuration.test_mode ?  TEST_BASE_URL : LIVE_BASE_URL
     "#{root}#{PROVE_SERVICE_ROOT}/Global#{Id3global.configuration.current_version}.asmx?wsdl"
   end
-  
+
   def self.create_client
     client = Savon.client(log_level: Id3global.configuration.savon_log_level,
                           wsdl: self.get_service_wsdl) do
@@ -60,15 +58,15 @@ module Id3global
 
 
   end
-  
+
   def self.merge_password_hash(options = {})
     raise "ID3 Global Account Name and/or Password Have Not Been Set" if Id3global.configuration.account_name.nil? || Id3global.configuration.password.nil?
-    
+
     password_hash = {
       "AccountName" => Id3global.configuration.account_name,
       "Password" => Id3global.configuration.password
     }
-    
+
     options.merge!(password_hash)
   end
 

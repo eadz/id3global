@@ -11,11 +11,10 @@ Gem::Specification.new do |gem|
   gem.description   = %q{ID3GLOBAL}
   gem.summary       = %q{ID3GLOBAL}
   gem.homepage      = ""
-  
+
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_dependency "savon"
   gem.add_dependency "activesupport"
-  gem.add_dependency "rubyntlm"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
